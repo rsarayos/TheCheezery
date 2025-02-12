@@ -15,10 +15,24 @@ class MenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu)
 
         var btnCold: Button = findViewById(R.id.button_cold_drinks) as Button
+        var btnHot: Button = findViewById(R.id.button_hot_drinks) as Button
+        var btnSweets: Button = findViewById(R.id.sweets) as Button
+        var btnSalties: Button = findViewById(R.id.salties) as Button
 
         btnCold.setOnClickListener {
-            var intent: Intent = Intent(this, ProductosActivity::class.java)
-            startActivity(intent)
+            abrirProductos("coldDrinks")
+        }
+
+        btnHot.setOnClickListener {
+            abrirProductos("hotDrinks")
+        }
+
+        btnSweets.setOnClickListener {
+            abrirProductos("sweets")
+        }
+
+        btnSalties.setOnClickListener {
+            abrirProductos("salties")
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -27,4 +41,11 @@ class MenuActivity : AppCompatActivity() {
             insets
         }
     }
+
+    private fun abrirProductos(categoria: String) {
+        val intent = Intent(this, ProductosActivity::class.java)
+        intent.putExtra("categoria", categoria)
+        startActivity(intent)
+    }
+
 }
